@@ -1,0 +1,23 @@
+#dialog label, #dialog input { display:block; }
+#dialog label { margin-top: 0.5em; }
+#dialog input, #dialog textarea { width: 95%; }
+#tabs { margin-top: 1em; }
+#tabs li .ui-icon-close { display: inline-block; margin: 0.4em 0.2em 0 0; cursor: pointer; }
+#add_tab { cursor: pointer; }
+
+#tabs {
+  width: 780px;
+}
+.ui-tabs .ui-tabs-nav li {
+  font-size: 12px;
+  width: 130px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.ui-tabs .ui-tabs-nav {
+  padding: 0;
+}
+.ui-widget-header {
+    border: none;
+}
