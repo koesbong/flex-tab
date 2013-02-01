@@ -17,7 +17,19 @@
 
 .ui-tabs .ui-tabs-nav {
   padding: 0;
+  width: 780px;
 }
 .ui-widget-header {
     border: none;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default,
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+
+}
+
+.ui-tabs .ui-tabs-nav li a, .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
+    width: 85px;
+    overflow: hidden;
+    white-space: nowrap;
+
 }

@@ -1,3 +1,8 @@
+// TODO
+//
+// - Calculate ratio for <a> tag inside the tab on resize
+// - Resize tabs on delete
+
 $(function() {
   var tabTitle = $( "#tab_title" ),
       tabContent = $( "#tab_content" ),
@@ -46,23 +51,34 @@ $(function() {
     var $tabContainer = $("#tabs"),
       $tabs = $("#tabs li"),
       minWidth = 130,
-      tabCount = $tabs.length + 1,
+      tabCount = $tabs.length,
       containerWidth = $tabContainer.width(),
       tabWidth = tabCount * minWidth,
-      expectedWidth = containerWidth / tabCount,
-      newWidth = containerWidth >= tabWidth ? minWidth + 'px' : expectedWidth + "px";
-      
-      console.log(tabCount);
-      console.log(containerWidth);
-      console.log(tabWidth);
-      console.log(expectedWidth);
+      expectedWidth = (containerWidth - (2 * tabCount)) / tabCount,
+      newWidth = containerWidth >= tabWidth ? minWidth : expectedWidth;
+
+      //console.log(tabLength);
+      //console.log(tabCount);
+      //console.log(containerWidth);
+      //console.log(tabWidth);
+      //console.log(expectedWidth);
       console.log(newWidth);
 
     $.each( $tabs, function( index, tab ) {
       $(tab).css({
-        'width' : newWidth
+        'width' : newWidth + 'px'
       });
+
+      if (newWidth < minWidth) {
+        $(tab).find('a').css({
+          'width': $('#tabs li:first-child a').width() * 0.8 + 'px'
+        });
+      }
     });
+  }
+
+  function foo() {
+
   }
 
   // addTab button: just opens the dialog
