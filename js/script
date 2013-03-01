@@ -40,7 +40,6 @@ $(function() {
     var label = tabTitle.val() || "Tab " + tabCounter,
         id = "tabs-" + tabCounter,
         li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-        currentTabWidth = $('#tabs li:first-child').width(),
         tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
 
     tabs.find( ".ui-tabs-nav" ).append( li );
@@ -48,10 +47,12 @@ $(function() {
     tabs.tabs( "refresh" );
     tabCounter++;
 
-    resizeTabs(currentTabWidth);
+    console.log($('#tabs li:first-child').width(););
+
+    resizeTabs();
   }
 
-  function resizeTabs(currentTabWidth, type) {
+  function resizeTabs(type) {
     var $tabContainer = $("#tabs"),
       $tabs = $("#tabs li"),
       minWidth = 130,
@@ -59,12 +60,7 @@ $(function() {
       containerWidth = $tabContainer.width(),
       tabWidth = tabCount * minWidth,
       expectedWidth = (containerWidth - (2 * tabCount)) / tabCount,
-      newWidth = containerWidth >= tabWidth ? minWidth : expectedWidth,
-      changeRatio = newWidth / currentTabWidth;
-
-      // console.log(currentTabWidth);
-      // console.log(newWidth);
-      // console.log(changeRatio);
+      newWidth = containerWidth >= tabWidth ? minWidth : expectedWidth;
 
       //console.log(tabLength);
       //console.log(tabCount);
@@ -80,17 +76,16 @@ $(function() {
 
       if (newWidth < minWidth && type !== 'remove') {
         $(tab).find('a').css({
-          // 'width': $('#tabs li:first-child a').width() * changeRatio + 'px'
-          'width': $('#tabs li:first-child a').width() * 0.85 + 'px'
+          'width': $('#tabs li:first-child a').width() * 0.8 + 'px'
         });
       }
       if (newWidth < minWidth && type === 'remove') {
         $(tab).find('a').css({
-          // 'width': $('#tabs li:first-child a').width() * changeRatio + 'px'
-          'width': $('#tabs li:first-child a').width() * 1.1 + 'px'
+          'width': $('#tabs li:first-child a').width() * 1.2 + 'px'
         });
       }
     });
+        console.log($('#tabs li:first-child').width(););
   }
 
   // addTab button: just opens the dialog
@@ -106,9 +101,7 @@ $(function() {
     $( "#" + panelId ).remove();
     tabs.tabs( "refresh" );
 
-    var currentTabWidth = $('#tabs li:first-child').width();
-
-    resizeTabs(currentTabWidth, 'remove');
+    resizeTabs('remove');
   });
 
   tabs.bind( "keyup", function( event ) {
